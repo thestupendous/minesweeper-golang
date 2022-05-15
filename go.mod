@@ -1,3 +1,3 @@
-module github.com/thestupendous/minesweeper-golang
+module minesweeper-go
 
-go 1.15
+go 1.18

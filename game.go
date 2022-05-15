@@ -1,35 +1,37 @@
 package main
 
 import (
-	d "github.com/thestupendous/minesweeper-golang/definitions"
 	"fmt"
+	d "minesweeper-go/definitions"
 	_ "strconv"
 )
 
-
 func main() {
 
-	 fmt.Println(d.Demo()," user")
+	fmt.Println(d.Demo(), " player")
 
-	d.M,d.N = 10,20
-	var mines d.Mines//:= make(map[d.Coord]bool)
-	mines = d.Mines{}
-	var board d.Board
+	board := d.Board{}
+	board.Level = 10
+	mines := make(d.Mines, 0)
 
-	board = make([][]string,d.M)
-	for i:=uint32(0);i<d.M;i++ {
-		board[i] = make([]string,d.N)
+	board.M, board.N = 10, 20
+	//	var mines d.Mines //:= make(map[d.Coord]bool)
+
+	board.Mat = make([][]int32, board.M)
+	for i := uint32(0); i < board.M; i++ {
+		board.Mat[i] = make([]int32, board.N)
 	}
-	for i:=uint32(0);i<d.M;i++{
-		for j:=uint32(0);j<d.N;j++{
-			board[i][j] = " "
+	for i := uint32(0); i < board.M; i++ {
+		for j := uint32(0); j < board.N; j++ {
+			board.Mat[i][j] = -1
 		}
 	}
 
-	mines[d.Coord{3,4}] = true
+	d.PlaceMines(&board, &mines)
+	fmt.Printf("mines\n%v\n", mines)
+	fmt.Printf("board\n%v\n", board)
 
-
-	fmt.Println(mines)
-	fmt.Println(board)
+	// a := d.Coord{2, 3}	//testing imported package definitions
+	// fmt.Println(a)
 
 }
